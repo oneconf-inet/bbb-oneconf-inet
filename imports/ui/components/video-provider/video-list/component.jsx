@@ -259,12 +259,13 @@ class VideoList extends Component {
     let offset = (pageIndex - 1) * pageSize;
     let LimitUsers = [...users];
     let LimitPage = [...users];
+    let status = false;
     if (LimitUsers.length > 1) {
       LimitUsers = LimitUsers.slice(offset, offset + pageSize);
     }
 
-    console.log('user', users);
-    console.log('LimitUsers', LimitUsers);
+    // console.log('user', users);
+    // console.log('LimitUsers', LimitUsers);
 
     // this.isMe = LimitUsers[0]['sortName']
     this.isMe = users[0]['sortName']
@@ -276,13 +277,19 @@ class VideoList extends Component {
     // console.log('page', this.page);
     // console.log('offset', this.offset);
     // console.log('LimitUser', this.LimitUser);
-    // console.log('LimitPage', this.LimitPage);
+    console.log('LimitPage', this.LimitPage);
 
     if (this.LimitUser == 0 && this.offset == this.LimitPage) {
       this.setState({
         activePage: this.state.activePage - 1
       });
     }
+
+    if (LimitUsers.length >= 2) {
+      status = true;
+    }
+
+    console.log('status', status);
 
     return LimitUsers.map((user, LimitPage) => {
       const isFocused = focusedId === user.userId;
@@ -325,9 +332,8 @@ class VideoList extends Component {
   }
 
   render() {
-    const { users, intl } = this.props;
+    const { users, intl, activ } = this.props;
     const { optimalGrid, autoplayBlocked } = this.state;
-
 
     const canvasClassName = cx({
       [styles.videoCanvas]: true,
@@ -343,7 +349,7 @@ class VideoList extends Component {
     let next;
 
     if (this.state.activePage >= 2) {
-      prev = <button class="h_button_left" style={{ height: `${optimalGrid.height - 50}px`, margin: "0 12px" }} onClick={() => {
+      prev = <button class={[styles.h_button_left]} style={{ height: `${optimalGrid.height - 50}px`, margin: "0 12px", }} onClick={() => {
         this.setState({
           activePage: this.state.activePage - 1
         });
@@ -355,7 +361,7 @@ class VideoList extends Component {
       </button>
     } else if (this.isMe != undefined) {
       if (this.state.show == true) {
-        prev = <button class="h_button_right" style={{ height: `30px`, width: `30px`, position: "absolute", top: "0px", zIndex: "1" }} onClick={() => {
+        prev = <button class={[styles.h_button_right_v]} style={{ height: `30px`, width: `30px`, position: "absolute", top: "0px", zIndex: "1" }} title="Mirror Camera" onClick={() => {
           this.setState({
             show: this.state.show = false
           });
@@ -364,7 +370,7 @@ class VideoList extends Component {
           <i class="icon-bbb-refresh" style={{ color: "black" }} aria-hidden="true"></i>
         </button>
       } else if (this.state.show == false) {
-        prev = <button class="h_button_right" style={{ height: `30px`, width: `30px`, position: "absolute", top: "0px", zIndex: "1" }} onClick={() => {
+        prev = <button class={[styles.h_button_right_v]} style={{ height: `30px`, width: `30px`, position: "absolute", top: "0px", zIndex: "1" }} title="Mirror Camera" onClick={() => {
           this.setState({
             show: this.state.show = true
           });
@@ -376,7 +382,7 @@ class VideoList extends Component {
     }
 
     if (this.state.activePage <= 16 && this.offset < this.LimitPage) {
-      next = <button class="h_button_right" style={{ height: `${optimalGrid.height - 50}px`, margin: "0 12px" }} onClick={() => {
+      next = <button class={[styles.h_button_right]} style={{ height: `${optimalGrid.height - 50}px`, margin: "0 12px" }} onClick={() => {
         this.setState({
           activePage: this.state.activePage + 1
         });

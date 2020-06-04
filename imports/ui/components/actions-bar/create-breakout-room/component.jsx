@@ -168,7 +168,6 @@ class BreakoutRoom extends PureComponent {
       valid: true,
       record: false,
       numberOfRoomsIsValid: true,
-      // test:""
     };
 
     this.btnLevelId = _.uniqueId('btn-set-level-');
@@ -366,7 +365,7 @@ class BreakoutRoom extends PureComponent {
   increaseDurationTime() {
     const { durationTime } = this.state;
     const number = ((1 * durationTime) + 1)
-    this.setState({ durationTime: number>30?30:number });
+    this.setState({ durationTime: number > 30 ? 30 : number });
     // console.log("เพิ่มขึ้น",durationTime)
 
   }
@@ -393,7 +392,7 @@ class BreakoutRoom extends PureComponent {
     this.setState({
       numberOfRooms,
       numberOfRoomsIsValid: numberOfRooms <= MAX_BREAKOUT_ROOMS
-      && numberOfRooms >= MIN_BREAKOUT_ROOMS,
+        && numberOfRooms >= MIN_BREAKOUT_ROOMS,
     });
   }
 
@@ -497,9 +496,8 @@ class BreakoutRoom extends PureComponent {
                 onChange={this.changeDurationTime}
                 onBlur={this.blurDurationTime}
                 aria-label={intl.formatMessage(intlMessages.duration)}
-                disabled = {true}
+                disabled={true}
               />
-              {/* <h1>{this.state.test}</h1> */}
               <HoldButton
                 key="decrease-breakout-time"
                 exec={this.decreaseDurationTime}
@@ -513,7 +511,7 @@ class BreakoutRoom extends PureComponent {
                     `${intl.formatMessage(intlMessages.minusRoomTime)} ${intl.formatMessage(intlMessages.roomTime, { 0: durationTime - 1 })}`
                   }
                   icon="substract"
-                  onClick={() => {}}
+                  onClick={() => { }}
                   hideLabel
                   circle
                   size="sm"
@@ -523,15 +521,15 @@ class BreakoutRoom extends PureComponent {
                 key="increase-breakout-time"
                 exec={this.increaseDurationTime}
                 className={styles.btnStyle}
-              > 
-              {/* ปุ่มเพิ่มเวลา */}
+              >
+                {/* ปุ่มเพิ่มเวลา */}
                 <Button
                   label={intl.formatMessage(intlMessages.addRoomTime)}
                   aria-label={
                     `${intl.formatMessage(intlMessages.addRoomTime)} ${intl.formatMessage(intlMessages.roomTime, { 0: durationTime + 1 })}`
                   }
                   icon="add"
-                  onClick={() => {}}
+                  onClick={() => { }}
                   hideLabel
                   circle
                   size="sm"
@@ -676,7 +674,7 @@ class BreakoutRoom extends PureComponent {
             ))
           }
         </span>
-        { isInvitation || this.renderButtonSetLevel(1, intl.formatMessage(intlMessages.backLabel))}
+        {isInvitation || this.renderButtonSetLevel(1, intl.formatMessage(intlMessages.backLabel))}
       </div>
     );
   }
@@ -693,14 +691,14 @@ class BreakoutRoom extends PureComponent {
       <React.Fragment>
         {!valid
           && (
-          <span className={styles.withError}>
-            {intl.formatMessage(intlMessages.leastOneWarnBreakout)}
-          </span>)}
+            <span className={styles.withError}>
+              {intl.formatMessage(intlMessages.leastOneWarnBreakout)}
+            </span>)}
         {!numberOfRoomsIsValid
           && (
-          <span className={styles.withError}>
-            {intl.formatMessage(intlMessages.numberOfRoomsIsValid)}
-          </span>)}
+            <span className={styles.withError}>
+              {intl.formatMessage(intlMessages.numberOfRoomsIsValid)}
+            </span>)}
       </React.Fragment>
     );
   }

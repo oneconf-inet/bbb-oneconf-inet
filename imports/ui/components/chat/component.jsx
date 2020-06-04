@@ -46,9 +46,6 @@ const Chat = (props) => {
   const HIDE_CHAT_AK = shortcuts.hidePrivateChat;
   const CLOSE_CHAT_AK = shortcuts.closePrivateChat;
 
-  console.log('CLOSE_CHAT_AK', HIDE_CHAT_AK);
-  console.log('CLOSE_CHAT_AK', CLOSE_CHAT_AK);
-
   return (
     <div
       data-test="publicChat"

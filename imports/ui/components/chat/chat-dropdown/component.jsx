@@ -103,15 +103,15 @@ class ChatDropdown extends PureComponent {
         label={intl.formatMessage(intlMessages.copy)}
         key={this.actionsKey[1]}
       />,
-      // amIModerator && isMeteorConnected ? (
-      //   <DropdownListItem
-      //     data-test="chatClear"
-      //     icon={clearIcon}
-      //     label={intl.formatMessage(intlMessages.clear)}
-      //     key={this.actionsKey[2]}
-      //     onClick={ChatService.clearPublicChatHistory}
-      //   />
-      // ) : null,
+      amIModerator && isMeteorConnected ? (
+        <DropdownListItem
+          data-test="chatClear"
+          icon={clearIcon}
+          label={intl.formatMessage(intlMessages.clear)}
+          key={this.actionsKey[2]}
+          onClick={ChatService.clearPublicChatHistory}
+        />
+      ) : null,
     ]);
   }
 
